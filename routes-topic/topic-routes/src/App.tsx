@@ -17,7 +17,7 @@ function App() {
           <Link to="/about">About</Link>
           {""}| {""}
           <Link to="/contact">Contact</Link>
-          <Outlet />
+          {/* <Outlet /> */}
         </nav>
         <Routes>
           <Route path="/" element={<Home />} />
