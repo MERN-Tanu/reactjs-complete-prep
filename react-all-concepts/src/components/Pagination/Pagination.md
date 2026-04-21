@@ -112,7 +112,84 @@ https://dummyjson.com/products?limit=10&skip=10&select=title,price
 }
 
 
-Cursor Pagination
+what is the problem with offset Pagination:
+
+suppose we have Pages with some entries (En-1 & En-2)
+
+we can see the duplicate data in en-2, this problem overcome by cursor Pagination
+
+(Ctrl+alt+ arrow up and down)
+
+     En-1  En-2
+Page 1: x    t
+        y    u
+        z    x
+        d    y
+
+Offset: 0
+Limit:  4
+
+Page 2: j    z
+        k    d
+        w    j
+        z    k
+
+Offset: 4
+Limit:  4
+
+Page 3: k    w
+        l    z
+        n    k
+        o    l
+
+Offset: 8
+Limit:  4
+
+Cursor Pagination - this approach suggested by facebook
+
+Cursor Pagination:
+
+- Read real time data (dynamic)
+- No skipped/missing entries
+- faster than offset Pagination
+
+How will it work?
+suppose we have table of 16 rows in the table
+
+Cursor Pagination:
+
+cursor (unique) = >  7
+         limit =>    4
+         so it will read the data from 7 to next 4 
+
+Pros:
+- No data is skipped/duplicate
+- faster than offset pagination
+- Real Time data (Dynamic)
+- All social media uses the Cursor Pointer
+
+Cons: 
+- CP tied with Infinite Scroll
+- It does not keep track of the pages
+- Sort
+
+🔹 Offset Pagination - O(n) : like a LinkedList
+/api/items?page=2&limit=10
+✔ Easy to implement
+✔ Works well for tables
+❌ Slower with large data
+❌ Can cause inconsistent results
+
+🔹 Cursor Pagination O(1): like a Array
+/api/items?cursor=abc123
+✔ Faster & scalable
+✔ Perfect for infinite scroll
+✔ Handles live data better
+❌ No direct page jumping
+
+💡 Frontend takeaway:
+Offset → replace data
+Cursor → append data
 
 Cursor-based pagination is superior for large, real-time datasets (like infinite feeds) because it offers consistent, fast performance () by using pointers to skip data, avoiding duplicates if new entries appear. Conversely, Offset pagination is simpler, allows jumping to specific pages (like page 5), but suffers from significant performance degradation on large datasets and data inconsistencies. 
 
@@ -134,4 +211,5 @@ Performance Comparison Table
 
 When to use which:
 Use Cursor Based: If you have millions of records, infinite scroll, or high-velocity data, use a Cursor-based approach.
+
 Use Offset Based: If you need to jump to specific pages, have small datasets, or need to quickly implement pagination, Offset-based pagination is suitable

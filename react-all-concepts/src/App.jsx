@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 import "./App.css";
 import { addTodo, deleteTodo } from "./features/todoSlice";
 import { useDispatch, useSelector } from "react-redux";
-import Accordian from "./Accordian/Accordian";
-import Comments from "./Reddit-nested-comments/Comments";
-import ImageSlider from "./Image-Slider/ImageSlider";
+// import Accordian from "./components/Accordian"
+import Comments from "./components/Reddit-nested-comments/Comments";
+import ImageSlider from "./components/Image-Slider/ImageSlider";
+import Pagination from "./components/Pagination/Pagination";
 
 function App() {
   const [input, setInput] = useState(0);
@@ -45,8 +46,9 @@ function App() {
     <div>
       <div>
         {" "}
-        <ImageSlider/>
-        {/* <Comments/> */}
+        <Pagination/>
+        {/* <ImageSlider/>
+        <Comments/> */}
         {/* <Accordian /> */}
       </div>
 
