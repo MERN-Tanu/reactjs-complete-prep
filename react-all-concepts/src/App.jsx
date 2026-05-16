@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Comments from "./components/Reddit-nested-comments/Comments";
 import ImageSlider from "./components/Image-Slider/ImageSlider";
 import Pagination from "./components/Pagination/Pagination";
+import LiveChat from "./components/YouTube-live-streaming-chat/live-chat/LiveChat";
 
 function App() {
   const [input, setInput] = useState(0);
@@ -46,7 +47,8 @@ function App() {
     <div>
       <div>
         {" "}
-        <Pagination/>
+        {/* <Pagination /> */}
+        <LiveChat />
         {/* <ImageSlider/>
         <Comments/> */}
         {/* <Accordian /> */}
